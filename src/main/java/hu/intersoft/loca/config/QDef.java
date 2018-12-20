@@ -9,7 +9,8 @@ import java.util.Objects;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class QDef {
+public final class QDef {
+    
     private String queue, routingKey;
 
     @Override
