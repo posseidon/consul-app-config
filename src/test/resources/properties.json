@@ -1,0 +1,8 @@
+{
+  "amqp": "amqp://username:password@hostname:port/virtualhost",
+  "exchange": "name_of_rabbitmq_exchange",
+  "listenOn": {
+    "queue": "name_of_queue",
+    "routingKey": "routing_key_of_queue"
+  }
+}
