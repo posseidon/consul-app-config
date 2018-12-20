@@ -51,7 +51,7 @@ Environment variables:
 - CONSUL_KV - absolute key/value path.
 
 If not provided, library is connecting to ``http://localhost:8500`` and looking for
-``config/demo.app`` configuration.
+``config/demo`` configuration.
 
 
 
@@ -70,5 +70,20 @@ Required configuration values:
 
 
 ```java
-AppConfig appConfig = AppConfig.getInstance();
+class AppConfigTest {
+
+    @Data
+    @NoArgsConstructor
+    static class AnotherTestProperties extends  Properties {
+        private String sampleProperty;
+    }
+
+    @Test
+    void getInstance() {
+        AppConfig<AnotherTestProperties> appConfig = new AppConfig<>(AnotherTestProperties.class);
+        AnotherTestProperties anotherTestProperties = appConfig.getProperties();
+        Assertions.assertEquals("name_of_rabbitmq_exchange", anotherTestProperties.exchange);
+        Assertions.assertEquals("I'm a sample property.", anotherTestProperties.sampleProperty);
+    }
+}
 ```
