@@ -1,5 +1,8 @@
 package hu.intersoft.loca.config;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public abstract class Properties {
     String amqp, exchange;
     QDef listenOn;
