@@ -1,20 +1,9 @@
-# Consul application configuration loader
-
-## Consul features:
+# Consul features:
 - [x] Connecting to Consul server.
 - [x] Load Configuration data from **key/value** store.
 - [x] Auto-refresh on configuration data changes.
 - [ ] Register application.
 - [ ] Providing health checks endpoints.
-
-[See more](#appconfig)
-
-## RabbitMQ features:
-- [ ] Support for RabbitMQ connection.
-- [ ] Interface for Queue Listeners.
-- [ ] Interface for Queue Publishers.
-
-## AppConfig
 
 Environment variables:
 - CONSUL_URL
@@ -37,9 +26,6 @@ Required configuration values:
 }
 ```
 defined in ``Properties`` abstract class.
-
-Example using AppConfig:
-
 
 ```java
 class TestAppConfig {
@@ -74,49 +60,8 @@ class TestAppConfig {
 }
 ```
 
-### Dependencies
-Consul dependency:
-```xml
-<dependency>
-    <groupId>com.orbitz.consul</groupId>
-    <artifactId>consul-client</artifactId>
-    <version>1.2.7</version>
-</dependency>
-```
+## RabbitMQ features:
+- [ ] Support for RabbitMQ connection.
+- [ ] Interface for Queue Listeners.
+- [ ] Interface for Queue Publishers.
 
-RabbitMQ dependency:
-```xml
-<dependency>
-    <groupId>com.rabbitmq</groupId>
-    <artifactId>amqp-client</artifactId>
-    <version>5.5.1</version>
-</dependency>
-```
-
-Lombok dependency:
-```xml
-<dependency>
-    <groupId>org.projectlombok</groupId>
-    <artifactId>lombok</artifactId>
-    <version>1.18.4</version>
-    <scope>provided</scope>
-</dependency>
-```
-
-Jackson dependency:
-```xml
-<dependency>
-    <groupId>com.fasterxml.jackson.core</groupId>
-    <artifactId>jackson-databind</artifactId>
-    <version>2.9.7</version>
-</dependency>
-```
-
-## Testing environment
-
-Using Consul docker container to test the library, run
-```jshelllanguage
-$ docker-compose up -d
-```
-
-Source [docker-compose.yml](docs/consul/docker-compose.yml)
