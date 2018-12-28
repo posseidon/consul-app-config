@@ -69,12 +69,20 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.21.0</version>
                 <configuration>
                     <environmentVariables>
-                        <CONSUL_URL>http://192.168.254.231:8500</CONSUL_URL>
-                        <CONSUL_KV>config/demoC</CONSUL_KV>
+                        <CONSUL_URL>http://127.0.0.1:8500</CONSUL_URL>
+                        <CONSUL_KV>config/demo</CONSUL_KV>
                     </environmentVariables>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.junit.platform</groupId>
+                        <artifactId>junit-platform-surefire-provider</artifactId>
+                        <version>1.2.0</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>

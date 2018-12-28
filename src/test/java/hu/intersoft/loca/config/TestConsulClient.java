@@ -12,11 +12,11 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ConsulClientTest {
+class TestConsulClient {
 
     @Test
     void fromUrl() {
-        ConsulClient consulClient = ConsulClient.fromUrl("http://192.168.254.231:8500");
+        ConsulClient consulClient = ConsulClient.fromUrl(null);
         Assertions.assertTrue(consulClient.isAlive());
     }
 
@@ -27,7 +27,7 @@ class ConsulClientTest {
 
     @Test
     void loadKV(){
-        ConsulClient consulClient = ConsulClient.fromUrl("http://192.168.254.231:8500");
+        ConsulClient consulClient = ConsulClient.fromUrl(null);
         try {
             TestProperties properties = consulClient.properties(TestProperties.class);
             Assertions.assertEquals("name_of_rabbitmq_exchange", properties.exchange);
@@ -44,7 +44,7 @@ class ConsulClientTest {
 
     @Test
     void loadComplexProp(){
-        ConsulClient consulClient = ConsulClient.fromUrlKv("http://192.168.254.231:8500", "config/demo");
+        ConsulClient consulClient = ConsulClient.fromUrlKv(null, null);
         try {
             AnotherTestProperties anotherTestProperties = consulClient.properties(AnotherTestProperties.class);
             Assertions.assertEquals("I'm a sample property.", anotherTestProperties.sampleProperty);
@@ -55,7 +55,7 @@ class ConsulClientTest {
 
     @Test
     void run() throws InterruptedException {
-        ConsulClient consulClient = ConsulClient.fromUrl("http://192.168.254.231:8500");
+        ConsulClient consulClient = ConsulClient.fromUrl(null);
 
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.submit(consulClient);

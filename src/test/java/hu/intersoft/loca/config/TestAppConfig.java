@@ -6,10 +6,7 @@ import lombok.NoArgsConstructor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static java.lang.System.getProperties;
-import static org.junit.jupiter.api.Assertions.*;
-
-class AppConfigTest {
+class TestAppConfig {
 
     @EqualsAndHashCode(callSuper = true)
     @Data
@@ -18,8 +15,8 @@ class AppConfigTest {
         private String sampleProperty;
     }
 
-    static class TestAppConfig extends AppConfig<AnotherTestProperties> {
-        TestAppConfig(){
+    static class MyAppConfig extends AppConfig<AnotherTestProperties> {
+        MyAppConfig(){
             super(AnotherTestProperties.class);
         }
 
@@ -30,7 +27,7 @@ class AppConfigTest {
 
     @Test
     void getInstance() {
-        TestAppConfig appConfig = new TestAppConfig();
+        MyAppConfig appConfig = new MyAppConfig();
 
         AnotherTestProperties anotherTestProperties = appConfig.getProperties();
         Assertions.assertEquals("I'm a sample property.", anotherTestProperties.sampleProperty);
