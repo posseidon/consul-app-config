@@ -7,12 +7,14 @@
 - [ ] Register application.
 - [ ] Providing health checks endpoints.
 
+[See more](#appconfig)
+
 ## RabbitMQ features:
 - [ ] Support for RabbitMQ connection.
 - [ ] Interface for Queue Listeners.
 - [ ] Interface for Queue Publishers.
 
-## Usage
+## AppConfig
 
 Environment variables:
 - CONSUL_URL
