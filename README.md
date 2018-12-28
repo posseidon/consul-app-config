@@ -1,10 +1,16 @@
 # Consul application configuration loader
 
-## Features:
-1. Connecting to Consul server.
-2. Load Configuration data from **key/value** store.
-3. Auto-refresh on configuration data changes.
-4. Optionally provides support for RabbitMQ connection.
+## Consul features:
+- [x] Connecting to Consul server.
+- [x] Load Configuration data from **key/value** store.
+- [x] Auto-refresh on configuration data changes.
+- [ ] Register application.
+- [ ] Providing health checks endpoints.
+
+## RabbitMQ features:
+- [ ] Support for RabbitMQ connection.
+- [ ] Interface for Queue Listeners.
+- [ ] Interface for Queue Publishers.
 
 ## Usage
 
@@ -34,7 +40,7 @@ Example using AppConfig:
 
 
 ```java
-class AppConfigTest {
+class TestAppConfig {
 
     @EqualsAndHashCode(callSuper = true)
     @Data
@@ -43,12 +49,11 @@ class AppConfigTest {
         private String sampleProperty;
     }
 
-    static class TestAppConfig extends AppConfig<AnotherTestProperties> {
-        TestAppConfig(){
+    static class MyAppConfig extends AppConfig<AnotherTestProperties> {
+        MyAppConfig(){
             super(AnotherTestProperties.class);
         }
 
-        
         String exchange(){
             return properties.exchange;
         }
@@ -56,12 +61,12 @@ class AppConfigTest {
 
     @Test
     void getInstance() {
-        TestAppConfig appConfig = new TestAppConfig();
-        
+        MyAppConfig appConfig = new MyAppConfig();
+
         AnotherTestProperties anotherTestProperties = appConfig.getProperties();
         Assertions.assertEquals("I'm a sample property.", anotherTestProperties.sampleProperty);
-        
-        String exchange = appConfig.exchange();        
+
+        String exchange = appConfig.exchange();
         Assertions.assertEquals("name_of_rabbitmq_exchange", exchange);
     }
 }
@@ -104,3 +109,12 @@ Jackson dependency:
     <version>2.9.7</version>
 </dependency>
 ```
+
+## Testing environment
+
+Using Consul docker container to test the library, run
+```jshelllanguage
+$ docker-compose up -d
+```
+
+Source [docker-compose.yml](docs/consul/docker-compose.yml)
