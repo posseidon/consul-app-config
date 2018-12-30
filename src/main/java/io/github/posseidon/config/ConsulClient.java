@@ -1,4 +1,4 @@
-package hu.intersoft.loca.config;
+package io.github.posseidon.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.orbitz.consul.Consul;

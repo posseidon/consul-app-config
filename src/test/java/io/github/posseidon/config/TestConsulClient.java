@@ -1,4 +1,4 @@
-package hu.intersoft.loca.config;
+package io.github.posseidon.config;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class TestConsulClient {
 

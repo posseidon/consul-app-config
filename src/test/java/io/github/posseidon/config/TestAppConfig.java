@@ -1,4 +1,4 @@
-package hu.intersoft.loca.config;
+package io.github.posseidon.config;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
