@@ -1,4 +1,4 @@
-package io.github.posseidon.config;
+package io.github.posseidon.mq;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 @Slf4j
-class ConsulClient implements Runnable, AutoCloseable{
+final class ConsulClient implements Runnable, AutoCloseable{
 
     private PropertyChangeSupport support;
     private static ObjectMapper objectMapper = new ObjectMapper();
@@ -49,7 +49,7 @@ class ConsulClient implements Runnable, AutoCloseable{
         return !leader.isEmpty();
     }
 
-    <T extends Properties> T properties(Class<T> type) throws IOException {
+    <T> T properties(Class<T> type) throws IOException {
         Value configValue = this.keyValueClient.getValue(this.kv).orElseThrow(() -> new ConsulException("Configuration not found: " + kv));
         return objectMapper.readValue(configValue.getValueAsBytes().get(), type);
     }

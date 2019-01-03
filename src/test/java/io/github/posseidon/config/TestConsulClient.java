@@ -1,5 +1,6 @@
 package io.github.posseidon.config;
 
+import io.github.posseidon.mq.MQProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.junit.jupiter.api.Assertions;
@@ -20,15 +21,15 @@ class TestConsulClient {
 
     @Data
     @NoArgsConstructor
-    static class TestProperties extends  Properties {
+    static class TestMQProperties extends MQProperties {
     }
 
     @Test
     void loadKV(){
         ConsulClient consulClient = ConsulClient.fromUrl(null);
         try {
-            TestProperties properties = consulClient.properties(TestProperties.class);
-            Assertions.assertEquals("name_of_rabbitmq_exchange", properties.exchange);
+            TestMQProperties properties = consulClient.properties(TestMQProperties.class);
+            Assertions.assertEquals("name_of_rabbitmq_exchange", properties.getExchange());
         } catch (IOException e) {
             Assertions.fail(e);
         }
@@ -36,7 +37,7 @@ class TestConsulClient {
 
     @Data
     @NoArgsConstructor
-    static class AnotherTestProperties extends  Properties {
+    static class AnotherTestMQProperties extends MQProperties {
         private String sampleProperty;
     }
 
@@ -44,7 +45,7 @@ class TestConsulClient {
     void loadComplexProp(){
         ConsulClient consulClient = ConsulClient.fromUrlKv(null, null);
         try {
-            AnotherTestProperties anotherTestProperties = consulClient.properties(AnotherTestProperties.class);
+            AnotherTestMQProperties anotherTestProperties = consulClient.properties(AnotherTestMQProperties.class);
             Assertions.assertEquals("I'm a sample property.", anotherTestProperties.sampleProperty);
         } catch (IOException e) {
             Assertions.fail(e);

@@ -10,7 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Slf4j
-public abstract class AppConfig<T extends Properties> implements PropertyChangeListener {
+public abstract class AppConfig<T> implements PropertyChangeListener {
     private ObjectMapper objectMapper = new ObjectMapper();
     private Class<T> type;
     protected T properties;

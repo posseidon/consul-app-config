@@ -1,9 +1,9 @@
-package io.github.posseidon.config;
+package io.github.posseidon.mq;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public abstract class Properties {
+public abstract class MQProperties {
     String amqp, exchange;
     QDef listenOn;
 

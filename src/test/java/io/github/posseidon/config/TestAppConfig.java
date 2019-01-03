@@ -1,5 +1,6 @@
 package io.github.posseidon.config;
 
+import io.github.posseidon.mq.MQProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -11,17 +12,17 @@ class TestAppConfig {
     @EqualsAndHashCode(callSuper = true)
     @Data
     @NoArgsConstructor
-    static class AnotherTestProperties extends  Properties {
+    static class AnotherTestMQProperties extends MQProperties {
         private String sampleProperty;
     }
 
-    static class MyAppConfig extends AppConfig<AnotherTestProperties> {
+    static class MyAppConfig extends AppConfig<AnotherTestMQProperties> {
         MyAppConfig(){
-            super(AnotherTestProperties.class);
+            super(AnotherTestMQProperties.class);
         }
 
         String exchange(){
-            return properties.exchange;
+            return properties.getExchange();
         }
     }
 
@@ -29,7 +30,7 @@ class TestAppConfig {
     void getInstance() {
         MyAppConfig appConfig = new MyAppConfig();
 
-        AnotherTestProperties anotherTestProperties = appConfig.getProperties();
+        AnotherTestMQProperties anotherTestProperties = appConfig.getProperties();
         Assertions.assertEquals("I'm a sample property.", anotherTestProperties.sampleProperty);
 
         String exchange = appConfig.exchange();
