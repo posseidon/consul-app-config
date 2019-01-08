@@ -14,12 +14,12 @@ import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 @Slf4j
-public abstract class MQConnection implements AutoCloseable {
+public class MQConnection implements AutoCloseable {
 
     private Channel channel;
     private Connection connection;
 
-    protected MQConnection(String uri){
+    public MQConnection(String uri){
         try {
             ConnectionFactory factory = new ConnectionFactory();
             factory.setUri(uri);
@@ -55,7 +55,7 @@ public abstract class MQConnection implements AutoCloseable {
     }
 
     public <T extends DefaultConsumer> void consume(T consumer, String onQueue) throws IOException {
-        this.connection.createChannel().basicConsume(onQueue, consumer);
+        consumer.getChannel().basicConsume(onQueue, consumer);
     }
 
     @Override

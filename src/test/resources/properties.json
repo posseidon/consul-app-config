@@ -4,5 +4,6 @@
   "listenOn": {
     "queue": "name_of_queue",
     "routingKey": "routing_key_of_queue"
-  }
+  },
+  "sampleProperty": "I'm a sample property."
 }
